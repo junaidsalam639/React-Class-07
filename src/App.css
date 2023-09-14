@@ -44,13 +44,3 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.input_group .label{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.input_group label{
-  padding: 6px;
-}
