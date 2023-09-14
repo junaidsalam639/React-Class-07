@@ -15,7 +15,7 @@ const headerStyle = {
 
 const Product = () => {
   return (
-    <div>
+    <div className='sticky-top'>
      <Layout>
       <Header style={headerStyle}>Product</Header><div style={{borderBottom :'4px solid green'}}></div>
     </Layout>

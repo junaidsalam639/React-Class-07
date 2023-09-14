@@ -98,7 +98,7 @@ const Sidebar = () => {
                             <div className="input_group">
                                 <div className="label">
                                     <label htmlFor="Title">Title</label> <br />
-                                    <input type="text" id='title' placeholder='Title' />
+                                    <input type="text" maxLength={20} id='title' placeholder='Title' />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Image">Image</label> <br />
@@ -106,24 +106,24 @@ const Sidebar = () => {
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Price">Price</label> <br />
-                                    <input type="text" id='price' placeholder='Price' />
+                                    <input type="number" maxLength={8} id='price' placeholder='Price' />
                                 </div>
                             </div>
                             <div className="input_group mt-4">
                                 <div className="label">
                                     <label htmlFor="Category">Category</label> <br />
-                                    <input type="text" id='category' placeholder='Category' />
+                                    <input type="text" id='category' maxLength={20} placeholder='Category' />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Description">Description</label> <br />
-                                    <input type="text" id='description' placeholder='Description' />
+                                    <input type="text" id='description' maxLength={50} placeholder='Description' />
                                 </div>
                                 <div className="label">
                                     <button type="button" onClick={Add_Edit}>Add / Edit / service</button>
                                 </div>
                             </div>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
+                        <div>
                             <Card_Card />
                         </div>
                     </Layout>

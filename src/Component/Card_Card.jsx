@@ -30,7 +30,7 @@ const Card_Card = () => {
 
   return (
     <>
-      <div>
+      <div style={{display : 'flex' , flexDirection : 'row' , justifyContent : 'space-around' , alignItems : 'center' , flexWrap : 'wrap' , width : '100%'}} className='my-4'>
         {figmaData.map((item) => (
           <Card
             key={item.id}
@@ -38,6 +38,7 @@ const Card_Card = () => {
               width: 300,
               marginTop: 20,
               marginBottom: 20,
+              height : 300
             }}
             cover={
               <img
@@ -50,12 +51,11 @@ const Card_Card = () => {
               <EditOutlined key="edit" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
-          >
+            >
             <Meta
               avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
               title={item.data.title}
-              description={item.data.description}
-              price={item.data.price}
+              description={item.data.description + " Price : " + item.data.price}
               />
           </Card>
         ))}
