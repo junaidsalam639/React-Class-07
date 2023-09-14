@@ -1,40 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { db, collection, getDocs, storage, ref, getDownloadURL , query } from '../Config_Firebase/Firebase';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
 const { Meta } = Card;
-const Card_Card = (props) => {
-  const {
-    figma_Data , 
-    figmaUrl 
-  } = props
-  
-  console.log(figma_Data);
-  console.log(figmaUrl);
-  return ( 
-    <Card
-    style={{
-      width: 300,
-      marginTop : 20,
-      marginBottom : 20,
-    }}
-    cover={
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    }
-    actions={[
-      <SettingOutlined key="setting" />,
-      <EditOutlined key="edit" />,
-      <EllipsisOutlined key="ellipsis" />,
-    ]}
-  >
-    <Meta
-      avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-      title="Card title"
-      description="This is the description"
-    />
-  </Card>
-    )
+
+const Card_Card = () => {
+  const [figmaData, setFigmaData] = useState([]);
+
+  useEffect(()=> {
+    async function fetchData(){
+      const q = query(collection(db, "Detail_Figma_Project"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async(doc) => {
+      console.log(doc.id, " => ", doc.data());
+           const dataPromises = querySnapshot.docs.map(async (doc) => {
+        const url = await getDownloadURL(ref(storage, doc.id));
+        return {
+          id: doc.id,
+          data: doc.data(),
+          downloadUrl: url,
+        };
+      });
+      const newData = await Promise.all(dataPromises);
+      setFigmaData(newData)
+    });
   }
+  fetchData()
+  },[]) 
+
+  return (
+    <>
+      <div>
+        {figmaData.map((item) => (
+          <Card
+            key={item.id}
+            style={{
+              width: 300,
+              marginTop: 20,
+              marginBottom: 20,
+            }}
+            cover={
+              <img
+                alt="example"
+                src={item.downloadUrl}
+              />
+            }
+            actions={[
+              <SettingOutlined key="setting" />,
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />,
+            ]}
+          >
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title={item.data.title}
+              description={item.data.description}
+              price={item.data.price}
+              />
+          </Card>
+        ))}
+      </div>
+    </>
+  );
+};
+
 export default Card_Card;
+
+
+
+
+
+

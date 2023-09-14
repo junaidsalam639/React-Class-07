@@ -22,9 +22,6 @@ const Sidebar = () => {
         token: { colorBgContainer },
     } = theme.useToken();
 
-    let [imageUrl , setImageUrl] = useState('');
-    let [figmaData , setFigmaData] = useState('');
-
     const Add_Edit = async () => {
         let title = document.getElementById('title');
         let image = document.getElementById('image').files[0];
@@ -47,19 +44,6 @@ const Sidebar = () => {
                 const storageRef = ref(storage, docRef.id);
                 uploadBytes(storageRef, image).then(async(snapshot) => {
                     console.log('Uploaded a blob or file!');
-                    const q = query(collection(db, "Detail_Figma_Project"));
-                    const querySnapshot = await getDocs(q);
-                    querySnapshot.forEach((doc) => {
-                        console.log(doc.id, " => ", doc.data());
-                        setFigmaData(doc.data());
-                        getDownloadURL(ref(storage, doc.id))
-                        .then(async(url) => {
-                            setImageUrl(url)
-                        });
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
                 });
             } catch (e) {
                 console.error("Error adding document: ", e);
@@ -140,7 +124,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
-                            <Card_Card figma_Data = {figmaData} figmaUrl = {imageUrl} />
+                            <Card_Card />
                         </div>
                     </Layout>
                 </Layout>
