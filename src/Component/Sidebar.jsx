@@ -55,7 +55,7 @@ const Sidebar = () => {
             <Product />
             <div>
                 <Layout>
-                    <Sider trigger={null} collapsible collapsed={collapsed}>
+                    <Sider trigger={null} collapsible collapsed={collapsed} width={320}>
                         <div className="demo-logo-vertical" />
                         <div className="input">
                             <h4 style={{ fontWeight: 'bold', color: 'white', marginTop: '15px' }}>Filter</h4>
