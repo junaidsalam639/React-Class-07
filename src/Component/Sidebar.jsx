@@ -13,6 +13,7 @@ import { Layout, Menu, Button, theme, Card, Input, Radio } from 'antd';
 import Card_Card from './Card_Card';
 import Product from './Product';
 import Input_Input from './Input_Input';
+import { db, collection, addDoc, getDocs, where, doc, storage, ref, getDownloadURL, uploadBytes , query } from '../Config_Firebase/Firebase';
 const { Header, Sider, Content } = Layout;
 
 const Sidebar = () => {
@@ -20,6 +21,51 @@ const Sidebar = () => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+
+    let [imageUrl , setImageUrl] = useState('');
+    let [figmaData , setFigmaData] = useState('');
+
+    const Add_Edit = async () => {
+        let title = document.getElementById('title');
+        let image = document.getElementById('image').files[0];
+        let price = document.getElementById('price');
+        let category = document.getElementById('category');
+        let description = document.getElementById('description');
+        if (title.value == '' || image == undefined || price == '' || category == '' || description == '') {
+            alert('Please Fill The Input !');
+        }
+        else {
+            try {
+                const docRef = await addDoc(collection(db, "Detail_Figma_Project"), {
+                    title: title.value,
+                    price: price.value,
+                    category: category.value,
+                    description: description.value,
+                });
+                console.log("Document written with ID: ", docRef.id);
+                localStorage.setItem('id', docRef.id)
+                const storageRef = ref(storage, docRef.id);
+                uploadBytes(storageRef, image).then(async(snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                    const q = query(collection(db, "Detail_Figma_Project"));
+                    const querySnapshot = await getDocs(q);
+                    querySnapshot.forEach((doc) => {
+                        console.log(doc.id, " => ", doc.data());
+                        setFigmaData(doc.data());
+                        getDownloadURL(ref(storage, doc.id))
+                        .then(async(url) => {
+                            setImageUrl(url)
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+                });
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        }
+    }
     return (
         <div>
             <Product />
@@ -65,41 +111,36 @@ const Sidebar = () => {
                             />
                         </Header>
                         <div className="input_group_main">
-                           <div className="input_group">
-                            <div className="label">
-                            <label htmlFor="Title">Title</label> <br />
-                            <input type="text" placeholder='Title' />
+                            <div className="input_group">
+                                <div className="label">
+                                    <label htmlFor="Title">Title</label> <br />
+                                    <input type="text" id='title' placeholder='Title' />
+                                </div>
+                                <div className="label">
+                                    <label htmlFor="Image">Image</label> <br />
+                                    <input type="file" id='image' placeholder='Image' />
+                                </div>
+                                <div className="label">
+                                    <label htmlFor="Price">Price</label> <br />
+                                    <input type="text" id='price' placeholder='Price' />
+                                </div>
                             </div>
-                            <div className="label">
-                            <label htmlFor="Image">Image</label> <br />
-                            <input type="file" placeholder='Image' />
+                            <div className="input_group mt-4">
+                                <div className="label">
+                                    <label htmlFor="Category">Category</label> <br />
+                                    <input type="text" id='category' placeholder='Category' />
+                                </div>
+                                <div className="label">
+                                    <label htmlFor="Description">Description</label> <br />
+                                    <input type="text" id='description' placeholder='Description' />
+                                </div>
+                                <div className="label">
+                                    <button type="button" onClick={Add_Edit}>Add / Edit / service</button>
+                                </div>
                             </div>
-                            <div className="label">
-                            <label htmlFor="Price">Price</label> <br />
-                            <input type="text" placeholder='Price' />
-                            </div>
-                           </div>
-                           <div className="input_group mt-4">
-                           <div className="label">
-                            <label htmlFor="Category">Category</label> <br />
-                            <input type="text" placeholder='Category' />
-                            </div>
-                            <div className="label">
-                            <label htmlFor="Description">Description</label> <br />
-                            <input type="text" placeholder='Description' />
-                            </div>
-                            <div className="label">
-                            <button type="button">Add / Edit / service</button>
-                            </div>
-                           </div>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
-                            <Card_Card />
-                            <Card_Card />
-                            <Card_Card />
-                            <Card_Card />
-                            <Card_Card />
-                            <Card_Card />
+                            <Card_Card figma_Data = {figmaData} figmaUrl = {imageUrl} />
                         </div>
                     </Layout>
                 </Layout>

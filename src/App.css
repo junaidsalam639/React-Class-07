@@ -44,6 +44,8 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
+
 .input_group input {
   margin-top: 8px;
   width: 220px;
@@ -57,13 +59,28 @@
 }
 
 .input_group button{
-  height: 6vh;
+  height: 5.5vh;
   width: 220px;
-  margin-top: 12px;
+  margin-top: 18px;
   background-color: green;
   border: none;
   outline: none;
   border-radius: 4px;
   color: white;
-  box-shadow: 0 0 4px black;
+  box-shadow: 0 0 4px green;
 }
+
+.input_group label{
+    font-size: 16px;
+    font-weight: 700;
+} 
+
+  @media (max-width : 892px){
+    .input_group {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
