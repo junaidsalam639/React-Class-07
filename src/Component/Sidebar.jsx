@@ -72,7 +72,7 @@ const Sidebar = () => {
                             </div>
                             <div className="label">
                             <label htmlFor="Image">Image</label> <br />
-                            <input type="text" placeholder='Image' />
+                            <input type="file" placeholder='Image' />
                             </div>
                             <div className="label">
                             <label htmlFor="Price">Price</label> <br />
@@ -89,7 +89,7 @@ const Sidebar = () => {
                             <input type="text" placeholder='Description' />
                             </div>
                             <div className="label">
-                            <button type="button" class="btn btn-success">Add / Edit / service</button>
+                            <button type="button">Add / Edit / service</button>
                             </div>
                            </div>
                         </div>
@@ -109,3 +109,5 @@ const Sidebar = () => {
 }
 
 export default Sidebar
+
+// https://www.figma.com/proto/ZyGunJ8WtYjvoKOTQTDlVZ/Sarf-o-Nahw-ki-dunya-team-library?type=design&node-id=3835-2&scaling=scale-down&page-id=514%3A2
