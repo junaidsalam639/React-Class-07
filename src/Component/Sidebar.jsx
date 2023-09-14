@@ -55,25 +55,25 @@ const Sidebar = () => {
             <Product />
             <div>
                 <Layout>
-                    <Sider trigger={null} collapsible collapsed={collapsed} width={320}>
+                    <Sider trigger={null} collapsible collapsed={collapsed} width={320} style={{backgroundColor : 'white'}}>
                         <div className="demo-logo-vertical" />
                         <div className="input">
-                            <h4 style={{ fontWeight: 'bold', color: 'white', marginTop: '15px' }}>Filter</h4>
+                            <h4 style={{ fontWeight: 'bold', color: 'black', marginTop: '15px' }}>Filter</h4>
                             <Input_Input />
                         </div>
                         <div className="radio">
-                            <h5 style={{ fontWeight: 'bold', color: 'white', marginTop: '20px' }}>Price</h5>
-                            <Radio style={{ color: 'white', padding: '6px' }}> <RightOutlined /> 100</Radio> <br />
-                            <Radio style={{ color: 'white', padding: '6px' }}> <RightOutlined /> 200</Radio> <br />
-                            <Radio style={{ color: 'white', padding: '6px' }}> <RightOutlined /> 300</Radio> <br />
-                            <Radio style={{ color: 'white', padding: '6px' }}> <RightOutlined /> 400</Radio> <br />
-                            <h5 style={{ fontWeight: 'bold', color: 'white', marginTop: '20px' }}>Sort By</h5>
-                            <Radio style={{ color: 'white', padding: '6px' }}> H T O L</Radio>
-                            <Radio style={{ color: 'white', padding: '6px' }}> H T O L</Radio>
-                            <h5 style={{ fontWeight: 'bold', color: 'white', marginTop: '20px' }}>Sort By Categories</h5>
-                            <Radio style={{ color: 'white', padding: '6px' }}>Mobile</Radio> <br />
-                            <Radio style={{ color: 'white', padding: '6px' }}>Laptop</Radio> <br />
-                            <Radio style={{ color: 'white', padding: '6px' }}>Cards</Radio> <br />
+                            <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Price</h5>
+                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 100</Radio> <br />
+                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 200</Radio> <br />
+                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 300</Radio> <br />
+                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 400</Radio> <br />
+                            <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By</h5>
+                            <Radio style={{ color: 'black', padding: '6px' }}> H T O L</Radio>
+                            <Radio style={{ color: 'black', padding: '6px' }}> H T O L</Radio>
+                            <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
+                            <Radio style={{ color: 'black', padding: '6px' }}>Mobile</Radio> <br />
+                            <Radio style={{ color: 'black', padding: '6px' }}>Laptop</Radio> <br />
+                            <Radio style={{ color: 'black', padding: '6px' }}>Cards</Radio> <br />
                         </div>
                     </Sider>
                     <Layout>
