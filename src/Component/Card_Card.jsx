@@ -13,7 +13,7 @@ const Card_Card = () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async(doc) => {
       console.log(doc.id, " => ", doc.data());
-           const dataPromises = querySnapshot.docs.map(async (doc) => {
+        const dataPromises = querySnapshot.docs.map(async (doc) => {
         const url = await getDownloadURL(ref(storage, doc.id));
         return {
           id: doc.id,

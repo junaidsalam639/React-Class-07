@@ -47,13 +47,13 @@
 
 
 .input_group input {
-  margin-top: 8px;
+  margin-top: 5px;
   width: 220px;
   height: 5.5vh;
   padding-left: 15px;
   border: none;
   outline: none;
-  border: 1px solid #282c34;
+  border: 1px solid #108ee9;
   padding: 3px;
   border-radius: 2px;
 }
