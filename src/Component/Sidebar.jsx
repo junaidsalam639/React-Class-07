@@ -13,41 +13,69 @@ import { Layout, Menu, Button, theme, Card, Input, Radio } from 'antd';
 import Card_Card from './Card_Card';
 import Product from './Product';
 import Input_Input from './Input_Input';
-import { db, collection, addDoc, getDocs, where, doc, storage, ref, getDownloadURL, uploadBytes , query } from '../Config_Firebase/Firebase';
+import { db, collection, addDoc, getDocs, where, doc, storage, ref, getDownloadURL, uploadBytes, query, updateDoc } from '../Config_Firebase/Firebase';
 const { Header, Sider, Content } = Layout;
 
 const Sidebar = () => {
+    const [image, setImg] = useState('');
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [category, setCategory] = useState('');
+    const [description, setDescription] = useState('');
+    const [id, setId] = useState('');
+    const [button, setButton] = useState('Add_Services');
+
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer },
     } = theme.useToken();
 
+    if (button == 'Add_Services') {
+        console.log('addd');
+    } else {
+        console.log('edit');
+    }
     const Add_Edit = async () => {
-        let title = document.getElementById('title');
-        let image = document.getElementById('image').files[0];
-        let price = document.getElementById('price');
-        let category = document.getElementById('category');
-        let description = document.getElementById('description');
-        if (title.value == '' || image == undefined || price == '' || category == '' || description == '') {
-            alert('Please Fill The Input !');
-        }
-        else {
-            try {
-                const docRef = await addDoc(collection(db, "Detail_Figma_Project"), {
-                    title: title.value,
-                    price: price.value,
-                    category: category.value,
-                    description: description.value,
-                });
-                console.log("Document written with ID: ", docRef.id);
-                localStorage.setItem('id', docRef.id)
-                const storageRef = ref(storage, docRef.id);
-                uploadBytes(storageRef, image).then(async(snapshot) => {
-                    console.log('Uploaded a blob or file!');
-                });
-            } catch (e) {
-                console.error("Error adding document: ", e);
+        if (button == 'Add_Services') {
+            let title = document.getElementById('title');
+            let image = document.getElementById('image').files[0];
+            let price = document.getElementById('price');
+            let category = document.getElementById('category');
+            let description = document.getElementById('description');
+            if (title.value == '' || image == undefined || price == '' || category == '' || description == '') {
+                alert('Please Fill The Input !');
             }
+            else {
+                try {
+                    const docRef = await addDoc(collection(db, "Detail_Figma_Project"), {
+                        title: title.value,
+                        price: price.value,
+                        category: category.value,
+                        description: description.value,
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                    localStorage.setItem('id', docRef.id)
+                    const storageRef = ref(storage, docRef.id);
+                    uploadBytes(storageRef, image).then(async (snapshot) => {
+                        console.log('Uploaded a blob or file!');
+                    });
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            }
+        }
+        else if (button == 'Edit_Services') {
+            const washingtonRef = doc(db, "Detail_Figma_Project", id);
+            await updateDoc(washingtonRef, {
+                title: title,
+                price: price,
+                category: category,
+                description: description,
+            });
+            const storageRef = ref(storage, id);
+            uploadBytes(storageRef, image).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+            });
         }
     }
     return (
@@ -55,7 +83,7 @@ const Sidebar = () => {
             <Product />
             <div>
                 <Layout>
-                    <Sider trigger={null} collapsible collapsed={collapsed} width={320} style={{backgroundColor : 'white'}}>
+                    <Sider trigger={null} collapsible collapsed={collapsed} width={320} style={{ backgroundColor: 'white' }}>
                         <div className="demo-logo-vertical" />
                         <div className="input">
                             <h4 style={{ fontWeight: 'bold', color: 'black', marginTop: '15px' }}>Filter</h4>
@@ -98,33 +126,33 @@ const Sidebar = () => {
                             <div className="input_group">
                                 <div className="label">
                                     <label htmlFor="Title">Title</label> <br />
-                                    <input type="text" maxLength={20} id='title' placeholder='Title' />
+                                    <input type="text" maxLength={20} id='title' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Image">Image</label> <br />
-                                    <input type="file" id='image' placeholder='Image' />
+                                    <input type="file" id='image' placeholder='Image' onChange={(e) => setImg(e.target.value)} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Price">Price</label> <br />
-                                    <input type="number" maxLength={8} id='price' placeholder='Price' />
+                                    <input type="number" maxLength={8} id='price' placeholder='Price' value={price} onChange={(e) => setPrice(e.target.value)} />
                                 </div>
                             </div>
                             <div className="input_group mt-4">
                                 <div className="label">
                                     <label htmlFor="Category">Category</label> <br />
-                                    <input type="text" id='category' maxLength={20} placeholder='Category' />
+                                    <input type="text" id='category' maxLength={20} placeholder='Category' value={category} onChange={(e) => setCategory(e.target.value)} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Description">Description</label> <br />
-                                    <input type="text" id='description' maxLength={50} placeholder='Description' />
+                                    <input type="text" id='description' maxLength={50} placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
                                 </div>
                                 <div className="label">
-                                    <button type="button" onClick={Add_Edit}>Add / Edit / service</button>
+                                    <button type="button" onClick={Add_Edit}>{button}</button>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <Card_Card />
+                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} />
                         </div>
                     </Layout>
                 </Layout>
