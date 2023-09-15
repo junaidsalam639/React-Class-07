@@ -27,11 +27,17 @@ const Sidebar = () => {
     const [description, setDescription] = useState('');
     const [id, setId] = useState('');
     const [button, setButton] = useState('Add_Services');
+    const [radio , setRadio] = useState('');
 
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+
+
+    const handleAllCard = () => {
+        setRadio('');
+    }
 
     const Add_Edit = async () => {
         if (button == 'Add_Services') {
@@ -52,7 +58,7 @@ const Sidebar = () => {
                     uploadBytes(storageRef, image).then(async (snapshot) => {
                         console.log('Uploaded a blob or file!');
                         alert('Add_Card successfully')
-                       window.location.reload()
+                        window.location.reload()
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);
@@ -92,17 +98,20 @@ const Sidebar = () => {
                         </div>
                         <div className="radio">
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Price</h5>
-                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 100</Radio> <br />
-                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 200</Radio> <br />
-                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 300</Radio> <br />
-                            <Radio style={{ color: 'black', padding: '6px' }}> <RightOutlined /> 400</Radio> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={100} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>100</span> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={200} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>200</span> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={300} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>300</span> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={400} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>400</span> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={500} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>500</span> <br />
+                            <button className="btn-success" onClick={handleAllCard}>All_Card_Show</button>
+
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By</h5>
-                            <Radio style={{ color: 'black', padding: '6px' }}> H T O L</Radio>
-                            <Radio style={{ color: 'black', padding: '6px' }}> H T O L</Radio>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
+                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
-                            <Radio style={{ color: 'black', padding: '6px' }}>Mobile</Radio> <br />
-                            <Radio style={{ color: 'black', padding: '6px' }}>Laptop</Radio> <br />
-                            <Radio style={{ color: 'black', padding: '6px' }}>Cards</Radio> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /><span>Mobile</span> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Laptop</span> <br />
+                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Cards</span> <br />
                         </div>
                     </Sider>
                     <Layout>
@@ -126,7 +135,7 @@ const Sidebar = () => {
                         <div className="input_group_main">
                             <div className="input_group">
                                 <div className="label">
-                                    <label htmlFor="Title">Title</label> <br />
+                                    <label htmlFor="Title text-left">Title</label> <br />
                                     <input type="text" maxLength={20} id='title' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </div>
                                 <div className="label">
@@ -153,7 +162,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                         <div>
-                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} />
+                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} dataRadio = {radio} />
                         </div>
                     </Layout>
                 </Layout>

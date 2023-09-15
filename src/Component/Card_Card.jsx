@@ -6,9 +6,10 @@ const { Meta } = Card;
 
 const Card_Card = (props) => {
   const {
-    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage , dataButton
+    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio
   } = props
   const [figmaData, setFigmaData] = useState([]);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -31,6 +32,7 @@ const Card_Card = (props) => {
     fetchData()
   }, [])
 
+
   const dele = async (e) => {
     console.log(e);
     await deleteDoc(doc(db, "Detail_Figma_Project", e));
@@ -43,7 +45,7 @@ const Card_Card = (props) => {
     });
   }
 
-  
+
 
   const edit = async (e) => {
     console.log(e);
@@ -69,10 +71,48 @@ const Card_Card = (props) => {
     }
   }
 
-  return (
-    <>
+  console.log(dataRadio)
+  const filteredCards = figmaData.filter((item) => item.data.price === dataRadio);
+
+  if (dataRadio == '') {
+    return (
+      <>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
+          {figmaData.map((item) => (
+            <Card
+              key={item.id}
+              style={{
+                width: 300,
+                marginTop: 25,
+                marginBottom: 25,
+                height: 300,
+              }}
+              cover={
+                <img
+                  alt="example"
+                  src={item.downloadUrl}
+                />
+              }
+              actions={[
+                <EditOutlined key="edit" onClick={() => edit(item.id)} />,
+                <DeleteOutlined key="setting" onClick={() => dele(item.id)} />,
+              ]}
+            >
+              <Meta
+                avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                title={item.data.title}
+                description={item.data.description + " Price : " + item.data.price}
+              />
+            </Card>
+          ))}
+        </div>
+      </>
+    );
+  }
+  else {
+    return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
-        {figmaData.map((item) => (
+        {filteredCards.map((item) => (
           <Card
             key={item.id}
             style={{
@@ -100,8 +140,8 @@ const Card_Card = (props) => {
           </Card>
         ))}
       </div>
-    </>
-  );
+    )
+  }
 };
 
 export default Card_Card;
