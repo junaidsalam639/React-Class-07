@@ -65,17 +65,26 @@ const Sidebar = () => {
             }
         }
         else if (button == 'Edit_Services') {
-            const washingtonRef = doc(db, "Detail_Figma_Project", id);
-            await updateDoc(washingtonRef, {
-                title: title,
-                price: price,
-                category: category,
-                description: description,
-            });
-            const storageRef = ref(storage, id);
-            uploadBytes(storageRef, image).then((snapshot) => {
-                console.log('Uploaded a blob or file!');
-            });
+            let title = document.getElementById('title');
+            let image = document.getElementById('image').files[0];
+            let price = document.getElementById('price');
+            let category = document.getElementById('category');
+            let description = document.getElementById('description');
+            if (title.value == '' || image == undefined || price == '' || category == '' || description == '') {
+                alert('Please Fill The Input !');
+            }else{
+                const washingtonRef = doc(db, "Detail_Figma_Project", id);
+                await updateDoc(washingtonRef, {
+                    title: title,
+                    price: price,
+                    category: category,
+                    description: description,
+                });
+                const storageRef = ref(storage, id);
+                uploadBytes(storageRef, image).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                });
+            }
         }
     }
     return (
@@ -130,7 +139,7 @@ const Sidebar = () => {
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Image">Image</label> <br />
-                                    <input type="file" id='image' placeholder='Image' onChange={(e) => setImg(e.target.value)} />
+                                    <input type="file" id='image' placeholder='Image' onChange={(e) => setImg(e.target.files[0])} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Price">Price</label> <br />
