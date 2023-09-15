@@ -30,28 +30,19 @@ const Sidebar = () => {
         token: { colorBgContainer },
     } = theme.useToken();
 
-    if (button == 'Add_Services') {
-        console.log('addd');
-    } else {
-        console.log('edit');
-    }
     const Add_Edit = async () => {
         if (button == 'Add_Services') {
-            let title = document.getElementById('title');
             let image = document.getElementById('image').files[0];
-            let price = document.getElementById('price');
-            let category = document.getElementById('category');
-            let description = document.getElementById('description');
-            if (title.value == '' || image == undefined || price == '' || category == '' || description == '') {
+            if (title == '' || image == undefined || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
             }
             else {
                 try {
                     const docRef = await addDoc(collection(db, "Detail_Figma_Project"), {
-                        title: title.value,
-                        price: price.value,
-                        category: category.value,
-                        description: description.value,
+                        title: title,
+                        price: price,
+                        category: category,
+                        description: description,
                     });
                     console.log("Document written with ID: ", docRef.id);
                     localStorage.setItem('id', docRef.id)
@@ -65,18 +56,21 @@ const Sidebar = () => {
             }
         }
         else if (button == 'Edit_Services') {
-            
-            const washingtonRef = doc(db, "Detail_Figma_Project", id);
-            await updateDoc(washingtonRef, {
-                title: title,
-                price: price,
-                category: category,
-                description: description,
-            });
-            const storageRef = ref(storage, id);
-            uploadBytes(storageRef, image).then((snapshot) => {
-                console.log('Uploaded a blob or file!');
-            });
+            if (title == '' || image == '' || price == '' || category == '' || description == '') {
+                alert('Please Fill The Input !');
+            }else{
+                const washingtonRef = doc(db, "Detail_Figma_Project", id);
+                await updateDoc(washingtonRef, {
+                    title: title,
+                    price: price,
+                    category: category,
+                    description: description,
+                });
+                const storageRef = ref(storage, id);
+                uploadBytes(storageRef, image).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                });
+            }
         }
     }
     return (

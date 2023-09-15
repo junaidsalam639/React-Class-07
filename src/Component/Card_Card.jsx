@@ -59,7 +59,7 @@ const Card_Card = (props) => {
           dataButton('Edit_Services')
         })
         .catch((error) => {
-          // Handle any errors
+          console.log(error);
         });
     } else {
       console.log("No such document!");
@@ -76,7 +76,7 @@ const Card_Card = (props) => {
               width: 300,
               marginTop: 20,
               marginBottom: 20,
-              height: 300
+              height: 300,
             }}
             cover={
               <img
