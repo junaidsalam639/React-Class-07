@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { useNavigate } from 'react-router-dom';
+
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -15,6 +17,7 @@ import Product from './Product';
 import Input_Input from './Input_Input';
 import { db, collection, addDoc, getDocs, where, doc, storage, ref, getDownloadURL, uploadBytes, query, updateDoc } from '../Config_Firebase/Firebase';
 const { Header, Sider, Content } = Layout;
+
 
 const Sidebar = () => {
     const [image, setImg] = useState('');
@@ -32,7 +35,6 @@ const Sidebar = () => {
 
     const Add_Edit = async () => {
         if (button == 'Add_Services') {
-            let image = document.getElementById('image').files[0];
             if (title == '' || image == undefined || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
             }
@@ -49,6 +51,8 @@ const Sidebar = () => {
                     const storageRef = ref(storage, docRef.id);
                     uploadBytes(storageRef, image).then(async (snapshot) => {
                         console.log('Uploaded a blob or file!');
+                        alert('Add_Card successfully')
+                       window.location.reload()
                     });
                 } catch (e) {
                     console.error("Error adding document: ", e);
@@ -56,9 +60,9 @@ const Sidebar = () => {
             }
         }
         else if (button == 'Edit_Services') {
-            if (title == '' || image == '' || price == '' || category == '' || description == '') {
+            if (title == '' || image == undefined || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
-            }else{
+            } else {
                 const washingtonRef = doc(db, "Detail_Figma_Project", id);
                 await updateDoc(washingtonRef, {
                     title: title,
@@ -69,6 +73,8 @@ const Sidebar = () => {
                 const storageRef = ref(storage, id);
                 uploadBytes(storageRef, image).then((snapshot) => {
                     console.log('Uploaded a blob or file!');
+                    alert('Edit successfully')
+                    window.location.reload()
                 });
             }
         }

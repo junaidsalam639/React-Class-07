@@ -36,11 +36,14 @@ const Card_Card = (props) => {
     await deleteDoc(doc(db, "Detail_Figma_Project", e));
     const desertRef = ref(storage, e);
     deleteObject(desertRef).then(() => {
-      alert('Delete successfulluy')
+      alert('Delete successfully');
+      window.location.reload()
     }).catch((error) => {
       console.log(error);
     });
   }
+
+  
 
   const edit = async (e) => {
     console.log(e);
@@ -74,8 +77,8 @@ const Card_Card = (props) => {
             key={item.id}
             style={{
               width: 300,
-              marginTop: 20,
-              marginBottom: 20,
+              marginTop: 25,
+              marginBottom: 25,
               height: 300,
             }}
             cover={
