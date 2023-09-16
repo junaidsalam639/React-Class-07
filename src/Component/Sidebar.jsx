@@ -43,6 +43,9 @@ const Sidebar = () => {
 
     const handleMobileLaptop = (e) => {
          setMobileLaptop(e)
+         setRadio('12345');
+         setHandleInput('12345')
+         setHandleInput('12345')
     }
 
     const Add_Edit = async () => {
