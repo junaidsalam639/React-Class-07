@@ -28,7 +28,8 @@ const Sidebar = () => {
     const [id, setId] = useState('');
     const [button, setButton] = useState('Add_Services');
     const [radio , setRadio] = useState('');
-
+    const [handleInput , setHandleInput] = useState('');
+   
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer },
@@ -41,7 +42,7 @@ const Sidebar = () => {
 
     const Add_Edit = async () => {
         if (button == 'Add_Services') {
-            if (title == '' || image == undefined || price == '' || category == '' || description == '') {
+            if (title == '' || image === undefined || image === null || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
             }
             else {
@@ -66,7 +67,7 @@ const Sidebar = () => {
             }
         }
         else if (button == 'Edit_Services') {
-            if (title == '' || image == undefined || price == '' || category == '' || description == '') {
+            if (title == '' || image === undefined || image === null || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
             } else {
                 const washingtonRef = doc(db, "Detail_Figma_Project", id);
@@ -94,24 +95,26 @@ const Sidebar = () => {
                         <div className="demo-logo-vertical" />
                         <div className="input">
                             <h4 style={{ fontWeight: 'bold', color: 'black', marginTop: '15px' }}>Filter</h4>
-                            <Input_Input />
+                            <Input_Input dataInput = {setHandleInput} />
                         </div>
                         <div className="radio">
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Price</h5>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={100} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>100</span> <br />
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={200} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>200</span> <br />
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={300} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>300</span> <br />
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={400} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>400</span> <br />
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={500} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>500</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={100} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>100</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={200} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>200</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={300} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>300</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={400} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>400</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={500} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>500</span> <br />
+                            <div className="btn" style={{width : '100%'}}>
                             <button className="btn-success" onClick={handleAllCard}>All_Card_Show</button>
+                            </div>
 
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By</h5>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
+                            <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
+                            <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /><span>Mobile</span> <br />
-                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Laptop</span> <br />
-                            <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Cards</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /><span>Mobile</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Laptop</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Cards</span> <br />
                         </div>
                     </Sider>
                     <Layout>
@@ -136,7 +139,7 @@ const Sidebar = () => {
                             <div className="input_group">
                                 <div className="label">
                                     <label htmlFor="Title text-left">Title</label> <br />
-                                    <input type="text" maxLength={20} id='title' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    <input type="text" maxLength={20} id='title' placeholder='Title Max-length-20' value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Image">Image</label> <br />
@@ -150,11 +153,11 @@ const Sidebar = () => {
                             <div className="input_group mt-4">
                                 <div className="label">
                                     <label htmlFor="Category">Category</label> <br />
-                                    <input type="text" id='category' maxLength={20} placeholder='Category' value={category} onChange={(e) => setCategory(e.target.value)} />
+                                    <input type="text" id='category' maxLength={20} placeholder='Category Max-length-20' value={category} onChange={(e) => setCategory(e.target.value)} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Description">Description</label> <br />
-                                    <input type="text" id='description' maxLength={50} placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
+                                    <input type="text" id='description' maxLength={50} placeholder='Description Max-length-50' value={description} onChange={(e) => setDescription(e.target.value)} />
                                 </div>
                                 <div className="label">
                                     <button type="button" onClick={Add_Edit}>{button}</button>
@@ -162,7 +165,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                         <div>
-                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} dataRadio = {radio} />
+                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} dataRadio = {radio} dataInput2 = {handleInput} />
                         </div>
                     </Layout>
                 </Layout>

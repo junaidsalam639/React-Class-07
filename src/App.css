@@ -83,7 +83,7 @@
     font-weight: 500;
 } 
 
-  @media (max-width : 892px){
+  @media (max-width : 992px){
     .input_group {
       display: flex;
       flex-direction: column;

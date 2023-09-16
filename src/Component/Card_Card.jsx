@@ -6,7 +6,7 @@ const { Meta } = Card;
 
 const Card_Card = (props) => {
   const {
-    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio
+    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio , dataInput2
   } = props
   const [figmaData, setFigmaData] = useState([]);
 
@@ -71,8 +71,12 @@ const Card_Card = (props) => {
     }
   }
 
-  console.log(dataRadio)
-  const filteredCards = figmaData.filter((item) => item.data.price === dataRadio);
+  console.log(dataRadio);
+  console.log(dataInput2);
+  const filteredCards = figmaData.filter((item) => {
+    return item.data.price === dataRadio
+  })
+  // const filteredCards = figmaData.filter((item) =>  item.data.price === dataRadio);
 
   if (dataRadio == '') {
     return (

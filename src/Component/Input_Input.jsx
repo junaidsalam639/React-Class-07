@@ -1,5 +1,5 @@
 import { AudioOutlined } from '@ant-design/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Space } from 'antd';
 const { Search } = Input;
 const suffix = (
@@ -11,10 +11,21 @@ const suffix = (
   />
 );
 
-const Input_Input = () => {
+const Input_Input = (props) => {
+  const {
+     dataInput
+  } = props
+  const [input , setInput] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    dataInput(input)
+  }
   return (
     <div style={{padding:'10px'}}>
-    <Search placeholder="input search text" enterButton />
+      <form action="" onSubmit={handleSearch}>
+    <Search placeholder="Enter Your Price!" value={input} type='number' enterButton onChange={(e) => setInput(e.target.value)} />
+      </form>
     </div>
   )
 }
