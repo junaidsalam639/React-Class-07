@@ -188,8 +188,8 @@ const { Meta } = Card;
 
 const Card_Card = (props) => {
   const {
-    dataRadio, dataInput2, dataMobileLaptop
-  } = props;
+        dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio , dataInput2 , dataMobileLaptop
+      } = props
 
   const [figmaData, setFigmaData] = useState([]);
 
@@ -231,7 +231,13 @@ const Card_Card = (props) => {
       console.log("Document data:", docSnap.data());
       getDownloadURL(ref(storage, e))
         .then((url) => {
-          // Handle dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, and dataButton accordingly
+          dataTitle(docSnap.data().title)
+          dataPrice(docSnap.data().price)
+          dataCategory(docSnap.data().category)
+          dataDescription(docSnap.data().description)
+          dataId(e)
+          dataImage(url)
+          dataButton('Edit_Services')
         })
         .catch((error) => {
           console.log(error);
