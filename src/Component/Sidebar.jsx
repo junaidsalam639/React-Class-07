@@ -41,10 +41,8 @@ const Sidebar = () => {
         setRadio('');
     }
 
-    const handleMobile = (e) => {
+    const handleMobileLaptop = (e) => {
          setMobileLaptop(e)
-         setRadio('12345');
-         setHandleInput('12345')
     }
 
     const Add_Edit = async () => {
@@ -119,8 +117,8 @@ const Sidebar = () => {
                             <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}   onClick={(e) =>  handleMobile(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onClick={(e) =>  handleMobile(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}   onClick={(e) =>  handleMobileLaptop(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onClick={(e) =>  handleMobileLaptop(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
                             <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" onClick={handleAllCard} /> <RightOutlined /> <span>Cards</span> <br />
                         </div>
                     </Sider>
