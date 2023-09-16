@@ -139,6 +139,7 @@ const Sidebar = () => {
                                     fontSize: '16px',
                                     width: 64,
                                     height: 64,
+                                    float : 'left'
                                 }}
                             />
                         </Header>
