@@ -82,7 +82,7 @@ const Card_Card = (props) => {
   })
   console.log('Filtered Cards:', filteredCards2);
 
-  // const filteredCards = figmaData.filter((item) =>  item.data.price === dataRadio);
+
 const style = {
   width : 300,
   height : 200,
