@@ -81,7 +81,7 @@ const Card_Card = (props) => {
     return item.data.category == dataMobileLaptop;
   })
   console.log('Filtered Cards:', filteredCards2);
-    
+
   // const filteredCards = figmaData.filter((item) =>  item.data.price === dataRadio);
 const style = {
   width : 300,
@@ -122,7 +122,7 @@ const style = {
       </>
     );
   }
-  else if(filteredCards){
+  else if(filteredCards != ''){
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
         {filteredCards.map((item) => (
@@ -155,15 +155,36 @@ const style = {
       </div>
     )
   }
-  else if(dataMobileLaptop){
+  else if(dataMobileLaptop != ''){
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
-        
-        {
-          console.log(filteredCards2)
-          // filteredCards2.map((item) => console.log(item))
-        }
-
+        {filteredCards2.map((item) => (
+          <Card
+            key={item.id}
+            style={{
+              width: 300,
+              marginTop: 25,
+              marginBottom: 25,
+              height: 350,
+            }}
+            cover={
+              <img style={style}
+                alt="example"
+                src={item.downloadUrl}
+              />
+            }
+            actions={[
+              <EditOutlined key="edit" onClick={() => edit(item.id)} />,
+              <DeleteOutlined key="setting" onClick={() => dele(item.id)} />,
+            ]}
+          >
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title={item.data.title}
+              description={item.data.description + " Price : " + item.data.price}
+            />
+          </Card>
+        ))}
       </div>
     )
   }
