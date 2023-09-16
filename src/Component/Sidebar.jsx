@@ -29,6 +29,7 @@ const Sidebar = () => {
     const [button, setButton] = useState('Add_Services');
     const [radio , setRadio] = useState('');
     const [handleInput , setHandleInput] = useState('');
+    const [mobileLaptop , setMobileLaptop] = useState('');
    
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -112,8 +113,8 @@ const Sidebar = () => {
                             <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /><span>Mobile</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Laptop</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}  onChange={(e) => setMobileLaptop(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onChange={(e) => setMobileLaptop(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
                             <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Cards</span> <br />
                         </div>
                     </Sider>
@@ -165,7 +166,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                         <div>
-                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} dataRadio = {radio} dataInput2 = {handleInput} />
+                            <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} dataRadio = {radio} dataInput2 = {handleInput} dataMobileLaptop = {mobileLaptop} />
                         </div>
                     </Layout>
                 </Layout>

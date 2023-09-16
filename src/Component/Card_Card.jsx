@@ -6,7 +6,7 @@ const { Meta } = Card;
 
 const Card_Card = (props) => {
   const {
-    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio , dataInput2
+    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio , dataInput2 , dataMobileLaptop
   } = props
   const [figmaData, setFigmaData] = useState([]);
 
@@ -73,26 +73,36 @@ const Card_Card = (props) => {
 
   console.log(dataRadio);
   console.log(dataInput2);
+  console.log(dataMobileLaptop);
   const filteredCards = figmaData.filter((item) => {
-    return item.data.price === dataRadio || item.data.price === dataInput2 
+    return item.data.price === dataRadio || item.data.price === dataInput2
   })
+  const filteredCards2 = figmaData.filter((item) => {
+    return item.data.category == dataMobileLaptop;
+  });
+  
+  console.log('Filtered Cards:', filteredCards2);
+    
   // const filteredCards = figmaData.filter((item) =>  item.data.price === dataRadio);
-
+const style = {
+  width : 300,
+  height : 200,
+}
   if (dataRadio == '') {
     return (
       <>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
           {figmaData.map((item) => (
-            <Card
+            <Card 
               key={item.id}
               style={{
                 width: 300,
                 marginTop: 25,
                 marginBottom: 25,
-                height: 300,
+                height: 350,
               }}
               cover={
-                <img
+                <img  style={style}
                   alt="example"
                   src={item.downloadUrl}
                 />
@@ -123,10 +133,10 @@ const Card_Card = (props) => {
               width: 300,
               marginTop: 25,
               marginBottom: 25,
-              height: 300,
+              height: 350,
             }}
             cover={
-              <img
+              <img style={style}
                 alt="example"
                 src={item.downloadUrl}
               />
@@ -146,6 +156,7 @@ const Card_Card = (props) => {
       </div>
     )
   }
+
 };
 
 export default Card_Card;
