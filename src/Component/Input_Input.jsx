@@ -20,6 +20,7 @@ const Input_Input = (props) => {
   const handleSearch = (e) => {
     e.preventDefault()
     dataInput(input)
+    setInput('')
   }
   return (
     <div style={{padding:'10px'}}>

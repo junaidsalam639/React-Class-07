@@ -41,6 +41,12 @@ const Sidebar = () => {
         setRadio('');
     }
 
+    const handleMobile = (e) => {
+         setMobileLaptop(e)
+         setRadio('12345');
+         setHandleInput('12345')
+    }
+
     const Add_Edit = async () => {
         if (button == 'Add_Services') {
             if (title == '' || image === undefined || image === null || price == '' || category == '' || description == '') {
@@ -113,9 +119,9 @@ const Sidebar = () => {
                             <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
                             <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}  onChange={(e) => setMobileLaptop(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onChange={(e) => setMobileLaptop(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" /> <RightOutlined /> <span>Cards</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}   onClick={(e) =>  handleMobile(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onClick={(e) =>  handleMobile(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
+                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" onClick={handleAllCard} /> <RightOutlined /> <span>Cards</span> <br />
                         </div>
                     </Sider>
                     <Layout>
