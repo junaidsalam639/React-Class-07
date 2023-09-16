@@ -146,7 +146,7 @@ const Sidebar = () => {
                             <div className="input_group">
                                 <div className="label">
                                     <label htmlFor="Title text-left">Title</label> <br />
-                                    <input type="text" maxLength={20} id='title' placeholder='Title Max-length-20' value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    <input type="text" maxLength={20} id='title' placeholder='Title Max-length-20' value={title} onChange={(e) => setTitle(e.target.value)} style={{textTransform : 'capitalize'}} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Image">Image</label> <br />
@@ -160,11 +160,11 @@ const Sidebar = () => {
                             <div className="input_group mt-4">
                                 <div className="label">
                                     <label htmlFor="Category">Category</label> <br />
-                                    <input type="text" id='category' maxLength={20} placeholder='Category Max-length-20' value={category} onChange={(e) => setCategory(e.target.value)} />
+                                    <input type="text" id='category' maxLength={20} placeholder='Category Max-length-20' value={category} onChange={(e) => setCategory(e.target.value)} style={{textTransform : 'lowercase'}} />
                                 </div>
                                 <div className="label">
                                     <label htmlFor="Description">Description</label> <br />
-                                    <input type="text" id='description' maxLength={50} placeholder='Description Max-length-50' value={description} onChange={(e) => setDescription(e.target.value)} />
+                                    <input type="text" id='description' maxLength={50} placeholder='Description Max-length-50' value={description} onChange={(e) => setDescription(e.target.value)} style={{textTransform : 'capitalize'}} />
                                 </div>
                                 <div className="label">
                                     <button type="button" onClick={Add_Edit}>{button}</button>
