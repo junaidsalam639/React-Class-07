@@ -77,6 +77,7 @@ const Card_Card = (props) => {
   const filteredCards = figmaData.filter((item) => {
     return item.data.price === dataRadio || item.data.price === dataInput2
   })
+
   const filteredCards2 = figmaData.filter((item) => {
     return item.data.category == dataMobileLaptop;
   })
@@ -155,7 +156,7 @@ const style = {
       </div>
     )
   }
-  else if(dataMobileLaptop){
+  else if(console.log(dataMobileLaptop)){
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
         
