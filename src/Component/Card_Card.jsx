@@ -74,7 +74,7 @@ const Card_Card = (props) => {
   console.log(dataRadio);
   console.log(dataInput2);
   const filteredCards = figmaData.filter((item) => {
-    return item.data.price === dataRadio
+    return item.data.price === dataRadio || item.data.price === dataInput2 
   })
   // const filteredCards = figmaData.filter((item) =>  item.data.price === dataRadio);
 
