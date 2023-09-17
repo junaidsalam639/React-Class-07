@@ -95,7 +95,7 @@ const Sidebar = () => {
     <div>
          <Product />
           <Layout>
-      <Sider  width={320} style={{backgroundColor  : '#fff'}}
+      <Sider width={320} style={{backgroundColor  : '#fff'}}
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {

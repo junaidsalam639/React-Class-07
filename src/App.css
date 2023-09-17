@@ -101,3 +101,12 @@
   margin: 6px;
 }
 
+.ant-layout-sider-zero-width-trigger{
+  background-color: green;
+}
+.ant-layout-sider-zero-width-trigger-left{
+  background-color: green;
+}
+button{
+  background-color: green;
+}

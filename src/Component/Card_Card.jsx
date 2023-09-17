@@ -16,7 +16,6 @@ const Card_Card = (props) => {
       const q = query(collection(db, "Detail_Figma_Project"));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(async (doc) => {
-        console.log(doc.id, " => ", doc.data());
         const dataPromises = querySnapshot.docs.map(async (doc) => {
           const url = await getDownloadURL(ref(storage, doc.id));
           return {
@@ -52,7 +51,6 @@ const Card_Card = (props) => {
     const docRef = doc(db, "Detail_Figma_Project", e);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       getDownloadURL(ref(storage, e))
         .then((url) => {
           dataTitle(docSnap.data().title)
@@ -71,16 +69,12 @@ const Card_Card = (props) => {
     }
   }
 
-  console.log(dataRadio);
-  console.log(dataInput2);
-  console.log(dataMobileLaptop);
   const filteredCards = figmaData.filter((item) => {
     return item.data.price === dataRadio || item.data.price === dataInput2
   })
   const filteredCards2 = figmaData.filter((item) => {
     return item.data.category == dataMobileLaptop;
   })
-  console.log('Filtered Cards:', filteredCards2);
 
 
 const style = {
