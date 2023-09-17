@@ -59,7 +59,7 @@
 .input_group button{
   height: 5.5vh;
   width: 220px;
-  margin-top: 18px;
+  margin-top: 28px;
   background-color: green;
   border: none;
   outline: none;
@@ -82,7 +82,7 @@
     font-weight: 500;
 } 
 
-  @media (max-width : 992px){
+  @media (max-width : 1080px){
     .input_group {
       display: flex;
       flex-direction: column;

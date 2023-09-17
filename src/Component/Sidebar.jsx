@@ -16,8 +16,7 @@ import Card_Card from './Card_Card';
 import Product from './Product';
 import Input_Input from './Input_Input';
 import { db, collection, addDoc, getDocs, where, doc, storage, ref, getDownloadURL, uploadBytes, query, updateDoc } from '../Config_Firebase/Firebase';
-const { Header, Sider, Content } = Layout;
-
+const { Header, Sider, Content , Footer } = Layout;
 
 const Sidebar = () => {
     const [image, setImg] = useState('');
@@ -30,14 +29,12 @@ const Sidebar = () => {
     const [radio , setRadio] = useState('');
     const [handleInput , setHandleInput] = useState('');
     const [mobileLaptop , setMobileLaptop] = useState('');
-   
-    const [collapsed, setCollapsed] = useState(false);
+
     const {
         token: { colorBgContainer },
-    } = theme.useToken();
+      } = theme.useToken();
 
-
-    const handleAllCard = () => {
+      const handleAllCard = () => {
         setRadio('');
     }
 
@@ -93,57 +90,60 @@ const Sidebar = () => {
             }
         }
     }
-    return (
-        <div>
-            <Product />
-            <div>
-                <Layout>
-                    <Sider trigger={null} collapsible collapsed={collapsed} width={320} style={{ backgroundColor: 'white' }}>
-                        <div className="demo-logo-vertical" />
-                        <div className="input">
-                            <h4 style={{ fontWeight: 'bold', color: 'black', marginTop: '15px' }}>Filter</h4>
-                            <Input_Input dataInput = {setHandleInput} />
-                        </div>
-                        <div className="radio">
-                            <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Price</h5>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={100} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>100</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={200} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>200</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={300} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>300</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={400} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>400</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={500} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>500</span> <br />
-                            <div className="btn" style={{width : '100%'}}>
-                            <button className="btn-success" onClick={handleAllCard}>All_Card_Show</button>
-                            </div>
 
-                            <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By</h5>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
-                            <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}   onClick={(e) =>  handleMobileLaptop(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onClick={(e) =>  handleMobileLaptop(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
-                            <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" onClick={handleAllCard} /> <RightOutlined /> <span>Cards</span> <br />
-                        </div>
-                    </Sider>
-                    <Layout>
-                        <Header
-                            style={{
-                                padding: 0,
-                                background: colorBgContainer,
-                            }}
-                        >
-                            <Button
-                                type="text"
-                                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                                onClick={() => setCollapsed(!collapsed)}
-                                style={{
-                                    fontSize: '16px',
-                                    width: 64,
-                                    height: 64,
-                                    float : 'left'
-                                }}
-                            />
-                        </Header>
-                        <div className="input_group_main">
+  return (
+    <div>
+         <Product />
+          <Layout>
+      <Sider  width={320} style={{backgroundColor  : '#fff'}}
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
+      >
+        <div className="demo-logo-vertical" />
+              <div className="input">
+                  <h4 style={{ fontWeight: 'bold', color: 'black', marginTop: '15px' }}>Filter</h4>
+                  <Input_Input dataInput = {setHandleInput} />
+              </div>
+              <div className="radio">
+                  <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Price</h5>
+                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={100} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>100</span> <br />
+                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={200} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>200</span> <br />
+                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={300} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>300</span> <br />
+                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={400} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>400</span> <br />
+                  <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={500} onChange={(e) => setRadio(e.target.value)} /> <RightOutlined /> <span>500</span> <br />
+                  <div className="btn" style={{width : '100%'}}>
+                  <button className="btn-success" onClick={handleAllCard}>All_Card_Show</button>
+                  </div>
+
+                  <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By</h5>
+                  <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
+                  <input className="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1" /> <RightOutlined /> <span>H T O L</span>
+                  <h5 style={{ fontWeight: 'bold', color: 'black', marginTop: '20px' }}>Sort By Categories</h5>
+                  <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'mobile'}   onClick={(e) =>  handleMobileLaptop(e.target.value)} /> <RightOutlined /><span>Mobile</span> <br />
+                  <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" value={'laptop'} onClick={(e) =>  handleMobileLaptop(e.target.value)} /> <RightOutlined /> <span>Laptop</span> <br />
+                  <input className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault1" onClick={handleAllCard} /> <RightOutlined /> <span>Cards</span> <br />
+              </div>
+      </Sider>
+      <Layout>
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+          }}
+        />
+        <Content
+          style={{
+            margin: '24px 16px 0',
+          }}
+        >
+          <div style={{  padding: 24,  minHeight: 360, }} >
+          <div className="input_group_main">
                             <div className="input_group">
                                 <div className="label">
                                     <label htmlFor="Title text-left">Title</label> <br />
@@ -175,13 +175,15 @@ const Sidebar = () => {
                         <div>
                             <Card_Card dataTitle={setTitle} dataPrice={setPrice} dataCategory={setCategory} dataDescription={setDescription} dataId={setId} dataImage={setImg} dataButton={setButton} dataRadio = {radio} dataInput2 = {handleInput} dataMobileLaptop = {mobileLaptop} />
                         </div>
-                    </Layout>
-                </Layout>
-            </div>
-        </div>
-    )
+          </div>
+        </Content>
+      </Layout>
+    </Layout>
+    </div>
+  )
 }
 
 export default Sidebar
 
-// https://www.figma.com/proto/ZyGunJ8WtYjvoKOTQTDlVZ/Sarf-o-Nahw-ki-dunya-team-library?type=design&node-id=3835-2&scaling=scale-down&page-id=514%3A2
+// // https://www.figma.com/proto/ZyGunJ8WtYjvoKOTQTDlVZ/Sarf-o-Nahw-ki-dunya-team-library?type=design&node-id=3835-2&scaling=scale-down&page-id=514%3A2
+
