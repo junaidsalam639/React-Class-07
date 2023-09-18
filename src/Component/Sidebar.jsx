@@ -46,7 +46,7 @@ const Sidebar = () => {
 
     const Add_Edit = async () => {
         if (button == 'Add_Services') {
-            if (title == '' || image === undefined || image === null || price == '' || category == '' || description == '') {
+            if (title == '' || image == '' || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
             }
             else {
@@ -71,7 +71,7 @@ const Sidebar = () => {
             }
         }
         else if (button == 'Edit_Services') {
-            if (title == '' || image === undefined || image === null || price == '' || category == '' || description == '') {
+            if (title == '' || image == ''  || price == '' || category == '' || description == '') {
                 alert('Please Fill The Input !');
             } else {
                 const washingtonRef = doc(db, "Detail_Figma_Project", id);
