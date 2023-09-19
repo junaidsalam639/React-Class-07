@@ -79,10 +79,10 @@ const Card_Card = (props) => {
   const maxPrice = Math.max(...figmaData.map(item => item.data.price));
   const maxPrice1 = Math.min(...figmaData.map(item => item.data.price));
   const filteredCards3 = figmaData.filter((item) => {
-    if(item.data.price == maxPrice){
+    if(dataHighLow1 == 'high'){
       return item.data.price == maxPrice
     }
-    else if(item.data.price == maxPrice1){
+    else if(dataHighLow1 == 'low'){
       return item.data.price == maxPrice1
     }
   })
