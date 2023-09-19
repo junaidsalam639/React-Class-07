@@ -6,7 +6,7 @@ const { Meta } = Card;
 
 const Card_Card = (props) => {
   const {
-    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio , dataInput2 , dataMobileLaptop
+    dataTitle, dataPrice, dataCategory, dataDescription, dataId, dataImage, dataButton, dataRadio , dataInput2 , dataMobileLaptop , dataHighLow1
   } = props
   const [figmaData, setFigmaData] = useState([]);
 
@@ -71,9 +71,15 @@ const Card_Card = (props) => {
 
   const filteredCards = figmaData.filter((item) => {
     return item.data.price === dataRadio || item.data.price === dataInput2
-  })
+  });
   const filteredCards2 = figmaData.filter((item) => {
     return item.data.category == dataMobileLaptop;
+  });
+  
+  const maxPrice = Math.max(...figmaData.map(item => item.data.price));
+  const maxPrice1 = Math.min(...figmaData.map(item => item.data.price));
+  const filteredCards3 = figmaData.filter((item) => {
+    return item.data.price == maxPrice || item.data.price == maxPrice1
   })
 
 
@@ -182,8 +188,38 @@ const style = {
       </div>
     )
   }
-  else{
-    alert('sdjashja')
+  else if(filteredCards3 != ''){
+    return (
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', width: '100%' }} className='my-5'>
+        {filteredCards3.map((item) => (
+          <Card
+            key={item.id}
+            style={{
+              width: 300,
+              marginTop: 25,
+              marginBottom: 25,
+              height: 350,
+            }}
+            cover={
+              <img style={style}
+                alt="example"
+                src={item.downloadUrl}
+              />
+            }
+            actions={[
+              <EditOutlined key="edit" onClick={() => edit(item.id)} />,
+              <DeleteOutlined key="setting" onClick={() => dele(item.id)} />,
+            ]}
+          >
+            <Meta
+              avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+              title={item.data.title}
+              description={item.data.description + " Price : " + item.data.price}
+            />
+          </Card>
+        ))}
+      </div>
+    )
   }
 
 };
