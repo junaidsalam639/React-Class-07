@@ -75,11 +75,16 @@ const Card_Card = (props) => {
   const filteredCards2 = figmaData.filter((item) => {
     return item.data.category == dataMobileLaptop;
   });
-  
+
   const maxPrice = Math.max(...figmaData.map(item => item.data.price));
   const maxPrice1 = Math.min(...figmaData.map(item => item.data.price));
   const filteredCards3 = figmaData.filter((item) => {
-    return item.data.price == maxPrice || item.data.price == maxPrice1
+    if(item.data.price == maxPrice){
+      return item.data.price == maxPrice
+    }
+    else if(item.data.price == maxPrice1){
+      return item.data.price == maxPrice1
+    }
   })
 
 
